@@ -1,25 +1,35 @@
-import React from 'react';
-import { useFetchContactsQuery } from 'redux/contactsSlice';
-import { ContactForm } from '../ContactForm/ContactForm';
-import { ContactList } from '../ContactList/ContactList';
-import { Filter } from '../Filter/Filter';
-import { Loader } from 'components/Loader/Loader';
-import { Toaster } from 'react-hot-toast';
+// import { Contacts } from 'pages/Contacts/Contacts';
+import { lazy, useEffect } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { Layout } from 'components/Layout/Layout';
+import { useDispatch } from 'react-redux';
+import { useAuth } from 'hooks/useAuth';
+import { refreshUser } from 'redux/auth/operations';
 
-import * as SC from './App.styled';
+const Contacts = lazy(() => import('../../pages/Contacts/Contacts'));
+const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
+const Register = lazy(() => import('../../pages/Register/Register'));
+const Login = lazy(() => import('../../pages/Login/Login'));
 
 export const App = () => {
-  const { data, error, isFetching } = useFetchContactsQuery();
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
-  return (
-    <SC.Container>
-      <SC.PhonebookTitle>Phonebook</SC.PhonebookTitle>
-      <ContactForm />
-      <SC.ContactsTitle>Contacts</SC.ContactsTitle>
-      <Filter />
-      {data && <ContactList />}
-      {isFetching && !error && <Loader />}
-      <Toaster position="top-right" reverseOrder={true} />
-    </SC.Container>
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <b>Resreshing user...</b>
+  ) : (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="/contacts" element={<Contacts />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Route>
+    </Routes>
   );
 };

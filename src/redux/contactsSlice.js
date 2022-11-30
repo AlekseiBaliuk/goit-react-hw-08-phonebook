@@ -1,9 +1,27 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import axios from 'axios';
+
+const axiosBaseQuery =
+  ({ baseUrl } = { baseUrl: '' }) =>
+  async ({ url, method, data, params }) => {
+    try {
+      const result = await axios({ url: baseUrl + url, method, data, params });
+      return { data: result.data };
+    } catch (axiosError) {
+      let err = axiosError;
+      return {
+        error: {
+          status: err.response?.status,
+          data: err.response?.data || err.message,
+        },
+      };
+    }
+  };
 
 export const phonebookApi = createApi({
   reducerPath: 'phonebookApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://637b70f56f4024eac20da688.mockapi.io',
+  baseQuery: axiosBaseQuery({
+    baseUrl: 'https://connections-api.herokuapp.com/',
   }),
   tagTypes: ['Contact'],
   endpoints: builder => ({
@@ -33,7 +51,7 @@ export const phonebookApi = createApi({
     updateContact: builder.mutation({
       query: fields => ({
         url: `/contacts/${fields.id}`,
-        method: 'PUT',
+        method: 'PATCH',
         body: fields,
       }),
       invalidatesTags: ['Contact'],

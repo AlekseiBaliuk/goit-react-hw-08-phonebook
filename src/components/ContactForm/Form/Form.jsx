@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PhonebookForm, PhonebookLabel, PhonebookButton } from './Form.styled';
+import * as SC from './Form.styled';
 
 export const Form = ({ name = '', phone = '', btnText, onSubmit }) => {
   const [contactName, setContactName] = useState(name);
@@ -39,8 +39,8 @@ export const Form = ({ name = '', phone = '', btnText, onSubmit }) => {
   };
 
   return (
-    <PhonebookForm onSubmit={formSubmitHandler}>
-      <PhonebookLabel>
+    <SC.Form onSubmit={formSubmitHandler}>
+      <SC.Label>
         Name
         <input
           type="text"
@@ -51,8 +51,8 @@ export const Form = ({ name = '', phone = '', btnText, onSubmit }) => {
           value={contactName}
           onChange={handleChange}
         />
-      </PhonebookLabel>
-      <PhonebookLabel>
+      </SC.Label>
+      <SC.Label>
         Number
         <input
           type="tel"
@@ -63,8 +63,8 @@ export const Form = ({ name = '', phone = '', btnText, onSubmit }) => {
           value={contactNumber}
           onChange={handleChange}
         />
-      </PhonebookLabel>
-      <PhonebookButton type="submit">{btnText}</PhonebookButton>
-    </PhonebookForm>
+      </SC.Label>
+      <SC.Button type="submit">{btnText}</SC.Button>
+    </SC.Form>
   );
 };

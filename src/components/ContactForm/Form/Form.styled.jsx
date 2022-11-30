@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const PhonebookForm = styled.form`
+export const Form = styled.form`
   margin-left: auto;
   margin-right: auto;
   width: 350px;
@@ -9,13 +9,13 @@ export const PhonebookForm = styled.form`
   margin-bottom: ${p => p.theme.space[4]}px;
 `;
 
-export const PhonebookLabel = styled.label`
+export const Label = styled.label`
   display: flex;
   flex-direction: column;
   margin-bottom: ${p => p.theme.space[2]}px;
 `;
 
-export const PhonebookButton = styled.button`
+export const Button = styled.button`
   margin-top: ${p => p.theme.space[2]}px;
   margin-bottom: ${p => p.theme.space[2]}px;
   background-color: ${p => p.theme.colors.secondary};
