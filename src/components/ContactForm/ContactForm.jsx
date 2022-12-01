@@ -11,7 +11,6 @@ export const ContactForm = () => {
   const { data: contacts } = useFetchContactsQuery();
 
   const formSubmitHandler = contactToAdd => {
-
     if (
       contacts.find(
         contact =>
@@ -21,9 +20,10 @@ export const ContactForm = () => {
       return alert(`${contactToAdd.name} is already in contacts.`);
     }
 
+    console.log(contactToAdd);
+
     addContact(contactToAdd);
     toast.success('You add new contact.');
-
   };
 
   return <Form onSubmit={formSubmitHandler} btnText="Add contact" />;

@@ -21,30 +21,27 @@ const axiosBaseQuery =
 export const phonebookApi = createApi({
   reducerPath: 'phonebookApi',
   baseQuery: axiosBaseQuery({
-    baseUrl: 'https://connections-api.herokuapp.com/',
+    baseUrl: 'https://connections-api.herokuapp.com',
   }),
   tagTypes: ['Contact'],
+  refetchOnMountOrArgChange: 1,
   endpoints: builder => ({
     fetchContacts: builder.query({
-      query: () => '/contacts',
-      providesTags: ['Contact'],
-    }),
-    fetchContactsById: builder.query({
-      query: id => `/contacts/${id}`,
+      query: () => ({ url: '/contacts', method: 'get' }),
       providesTags: ['Contact'],
     }),
     addContact: builder.mutation({
       query: contact => ({
         url: '/contacts',
-        method: 'POST',
-        body: contact,
+        method: 'post',
+        data: contact,
       }),
       invalidatesTags: ['Contact'],
     }),
     deleteContact: builder.mutation({
       query: contactId => ({
         url: `/contacts/${contactId}`,
-        method: 'DELETE',
+        method: 'delete',
       }),
       invalidatesTags: ['Contact'],
     }),
@@ -52,7 +49,7 @@ export const phonebookApi = createApi({
       query: fields => ({
         url: `/contacts/${fields.id}`,
         method: 'PATCH',
-        body: fields,
+        data: { name: fields.name, number: fields.number },
       }),
       invalidatesTags: ['Contact'],
     }),
@@ -61,7 +58,6 @@ export const phonebookApi = createApi({
 
 export const {
   useFetchContactsQuery,
-  useFetchContactsByIdQuery,
   useAddContactMutation,
   useDeleteContactMutation,
   useUpdateContactMutation,

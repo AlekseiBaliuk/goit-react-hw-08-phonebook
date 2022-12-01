@@ -9,6 +9,7 @@ export const AppBar = () => {
   return (
     <SC.Header>
       <Navigation />
+      <SC.HeaderTitle>Phonebook</SC.HeaderTitle>
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </SC.Header>
   );

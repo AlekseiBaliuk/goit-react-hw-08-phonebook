@@ -35,11 +35,6 @@ export const store = configureStore({
     }),
     phonebookApi.middleware,
   ],
-  // middleware: getDefaultMiddleware({
-  //   serializableCheck: {
-  //     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-  //   },
-  // }),
 });
 
 setupListeners(store.dispatch);

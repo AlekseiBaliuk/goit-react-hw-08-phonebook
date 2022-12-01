@@ -9,3 +9,7 @@ export const Header = styled.header`
   margin-bottom: 16px;
   border-bottom: 1px solid black;
 `;
+
+export const HeaderTitle = styled.h1`
+  color: #1976d2;
+`;

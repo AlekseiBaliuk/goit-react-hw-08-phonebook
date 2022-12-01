@@ -1,11 +1,16 @@
 import styled from '@emotion/styled';
 
 export const ContactListUl = styled.ul`
-  margin-left: auto;
-  margin-right: auto;
-  width: 350px;
-  border: ${p => `${p.theme.borders.normal} ${p.theme.colors.grey}`};
-  padding: ${p => p.theme.space[4]}px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+
+  /* margin-left: auto;
+  margin-right: auto; */
+  /* width: 350px; */
+  /* border: 4px solid #ccc; */
+  padding: 12px;
 `;
 
 export const Info = styled.p`

@@ -13,6 +13,5 @@ export const PhonebookTitle = styled.h1`
 `;
 
 export const ContactsTitle = styled.h2`
-  text-align: center;
-  margin-bottom: ${p => p.theme.space[3]}px;
+  color: #1976d2; 
 `;

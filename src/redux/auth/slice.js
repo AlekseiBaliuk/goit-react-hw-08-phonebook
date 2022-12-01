@@ -6,22 +6,39 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  error: null,
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
+    [signup.pending](state, { payload }) {
+      state.error = null;
+    },
+
     [signup.fulfilled](state, { payload }) {
       state.user = payload.user;
       state.token = payload.token;
       state.isLoggedIn = true;
     },
 
+    [signup.rejected](state, { payload }) {
+      state.error = payload;
+    },
+
+    [logIn.pending](state, { payload }) {
+      state.error = null;
+    },
+
     [logIn.fulfilled](state, { payload }) {
       state.user = payload.user;
       state.token = payload.token;
       state.isLoggedIn = true;
+    },
+
+    [logIn.rejected](state, { payload }) {
+      state.error = payload;
     },
 
     [logOut.fulfilled](state) {

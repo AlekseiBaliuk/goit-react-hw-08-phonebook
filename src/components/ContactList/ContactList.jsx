@@ -17,11 +17,11 @@ export const ContactList = () => {
   return (
     <>
       {!contacts ? (
-        <SC.Info>No contacts</SC.Info>
+        <p>No contacts</p>
       ) : (
         <SC.ContactListUl>
-          {visibleContacts.map(({ id, name, phone }) => (
-            <ContactListItem key={id} id={id} name={name} phone={phone} />
+          {visibleContacts.map(({ id, name, number }) => (
+            <ContactListItem key={id} id={id} name={name} number={number} />
           ))}
         </SC.ContactListUl>
       )}
