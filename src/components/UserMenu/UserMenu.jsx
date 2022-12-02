@@ -12,9 +12,6 @@ export const UserMenu = () => {
   return (
     <Box sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
       <SC.P>Welcome, {user.name}</SC.P>
-      {/* <button type="button" onClick={() => dispatch(logOut())}>
-        Logout
-      </button> */}
 
       <Button
         variant="contained"

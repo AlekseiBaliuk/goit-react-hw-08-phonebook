@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { getFilter } from 'redux/selectors';
-import { setFilter } from 'redux/filterSlice';
-import * as SC from './Filter.styled'
+import { getFilter } from 'redux/filter/selectors';
+import { setFilter } from 'redux/filter/filterSlice';
+import * as SC from './Filter.styled';
 
 export const Filter = () => {
   const filter = useSelector(getFilter);
@@ -21,9 +21,7 @@ export const Filter = () => {
         alignItems: 'center',
         flexDirection: 'column',
         gap: '10px',
-        // margin: '0 auto',
         maxWidth: '360px',
-        width: '100%',
         p: '10px',
       }}
     >
@@ -37,12 +35,6 @@ export const Filter = () => {
         onChange={changeFilter}
         sx={{ width: '100%' }}
       />
-      {/* <input
-          type="text"
-          value={filter}
-          placeholder="Enter name to find..."
-          onChange={changeFilter}
-        ></input> */}
     </Box>
   );
 };

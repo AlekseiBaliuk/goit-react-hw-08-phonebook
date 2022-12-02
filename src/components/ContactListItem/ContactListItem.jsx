@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { useDeleteContactMutation } from 'redux/contactsSlice';
+import { useDeleteContactMutation } from 'redux/contacts/contactsSlice';
 import PropTypes from 'prop-types';
 import * as SC from './ContactListItem.styled';
 import { EditContactModal } from 'components/EditContactModal/EditContactModal';
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
+import PersonIcon from '@mui/icons-material/Person';
 
 export const ContactListItem = ({ name, number, id }) => {
   const [showModal, setShowModal] = useState(false);
@@ -18,39 +19,21 @@ export const ContactListItem = ({ name, number, id }) => {
   return (
     <SC.ContactListLi>
       <Box sx={{ textAlign: 'start' }}>
-        <p>{name}</p>
-        <p>
-          <PhoneAndroidIcon size="small" /> {number}
-        </p>
+        <SC.ContactListText>
+          <PersonIcon sx={{ width: '20px', height: '20px' }} />
+          {name}
+        </SC.ContactListText>
+        <SC.ContactListText>
+          <PhoneAndroidIcon sx={{ width: '20px', height: '20px' }} /> {number}
+        </SC.ContactListText>
       </Box>
-      {/* <p>
-        {name}: {number}
-      </p> */}
+
       <Box
         sx={{
           display: 'flex',
           gap: '5px',
         }}
       >
-        {/* <Button
-          type="button"
-          id={id}
-          onClick={toggleModal}
-          disabled={isLoading}
-          variant="outlined"
-          size="small"
-        >
-          Edit
-        </Button> */}
-        {/* <Button
-          type="button"
-          id={id}
-          onClick={() => deleteContact(id)}
-          disabled={isLoading}
-          // variant="outlined"
-          // size="small"
-        > */}
-        {/* </Button> */}
         <IconButton
           aria-label="edit"
           size="small"

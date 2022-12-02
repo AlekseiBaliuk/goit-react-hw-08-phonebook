@@ -1,7 +1,9 @@
+import * as SC from './HomePage.styled';
+
 const HomePage = () => {
   return (
     <div>
-      <h1>Welcome to phonebook</h1>
+      <SC.HomePageTitle>Welcome to phonebook</SC.HomePageTitle>
     </div>
   );
 };

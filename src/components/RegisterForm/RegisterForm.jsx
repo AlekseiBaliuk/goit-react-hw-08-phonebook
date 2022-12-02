@@ -3,7 +3,6 @@ import { useAuth } from 'hooks/useAuth';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { signup } from 'redux/auth/operations';
-// import * as SC from '../ContactForm/Form/Form.styled';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -60,20 +59,5 @@ export const RegisterForm = () => {
       </Button>
       <Toaster position="top-right" reverseOrder={true} />
     </Box>
-    // <SC.Form onSubmit={handleSubmit}>
-    //   <SC.Label>
-    //     Username
-    //     <input type="text" name="name" />
-    //   </SC.Label>
-    //   <SC.Label>
-    //     Email
-    //     <input type="email" name="email" />
-    //   </SC.Label>
-    //   <SC.Label>
-    //     Password
-    //     <input type="password" name="password" />
-    //   </SC.Label>
-    //   <SC.Button type='submit'>Register</SC.Button>
-    // </SC.Form>
   );
 };

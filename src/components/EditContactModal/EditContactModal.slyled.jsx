@@ -10,8 +10,6 @@ export const Overlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin-left: auto;
-  margin-right: auto; */
   z-index: 99;
 `;
 

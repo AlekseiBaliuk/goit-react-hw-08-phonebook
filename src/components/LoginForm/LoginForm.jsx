@@ -1,10 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
-// import * as SC from '../ContactForm/Form/Form.styled';
 import { Button } from '@mui/material';
 import { useAuth } from 'hooks/useAuth';
 import toast, { Toaster } from 'react-hot-toast';
@@ -67,17 +65,5 @@ export const LoginForm = () => {
       </Button>
       <Toaster position="top-right" reverseOrder={true} />
     </Box>
-
-    // <SC.Form onSubmit={handleSubmit}>
-    //   <SC.Label>
-    //     Email
-    //     <input type="email" name="email" />
-    //   </SC.Label>
-    //   <SC.Label>
-    //     Password
-    //     <input type="password" name="password" />
-    //   </SC.Label>
-    //   <SC.Button type="submit">Log in</SC.Button>
-    // </SC.Form>
   );
 };

@@ -5,14 +5,16 @@ export const ContactListUl = styled.ul`
   flex-direction: column;
   gap: 10px;
   width: 100%;
-
-  /* margin-left: auto;
-  margin-right: auto; */
-  /* width: 350px; */
-  /* border: 4px solid #ccc; */
   padding: 12px;
 `;
 
 export const Info = styled.p`
   text-align: center;
+`;
+
+export const TextInfo = styled.p`
+  font-size: 20px;
+  color: #1976d2;
+  font-weight: 600;
+  margin-top: 40px;
 `;

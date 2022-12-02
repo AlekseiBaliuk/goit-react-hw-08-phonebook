@@ -1,31 +1,27 @@
 import {
   useFetchContactsQuery,
   useUpdateContactMutation,
-} from 'redux/contactsSlice';
+} from 'redux/contacts/contactsSlice';
 import { Form } from 'components/ContactForm/Form/Form';
 import { Modal, Overlay } from './EditContactModal.slyled';
 import { Box, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import toast, { Toaster } from 'react-hot-toast';
 
 export const EditContactModal = ({ id, toggleModal }) => {
   const { data: contacts } = useFetchContactsQuery();
   const [updateContact] = useUpdateContactMutation();
 
   const contactById = contacts.filter(contact => contact.id === id);
-  // console.log('contactById', contactById[0].name);
 
-  const findeMatch = contacts.find(
-    contact => contact.name.toLowerCase() === contactById[0].name.toLowerCase()
-  );
-  // console.log(findeMatch.name);
+  const findeMatch = contacts.map(contact => contact.name.toLowerCase());
 
   const handleUpdateContact = async contactToEdit => {
-    // if (findeMatch.name === contactById[0].name) {
-    //   console.log('yes')
-    //   console.log('findeMatch', findeMatch);
-    //   toggleModal();
-    //   return alert(`${contactToEdit.name} is already in contacts.`);
-    // }
+    if (findeMatch.includes(contactToEdit.name.toLowerCase())) {
+      toggleModal();
+      toast.error(`${contactToEdit.name} is already in contacts.`);
+      return;
+    }
 
     try {
       await updateContact({ id, ...contactToEdit });
@@ -43,11 +39,7 @@ export const EditContactModal = ({ id, toggleModal }) => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            // gap: '10px',
-            // margin: '0 auto',
             width: '360px',
-            // width: '100%',
-            // p: '10px',
           }}
         >
           {contacts && (
@@ -67,19 +59,13 @@ export const EditContactModal = ({ id, toggleModal }) => {
               p: '0',
               minWidth: '0',
             }}
-            // type="button"
-            // variant="outlined"
-            // size="small"
             onClick={toggleModal}
           >
-            <CloseIcon
-              fontSize="small"
-              // sx={{ width: '40', height: '40' }}
-              // sx={{ fontSize: 15 }}
-            />
+            <CloseIcon fontSize="small" />
           </Button>
         </Box>
       </Modal>
+      <Toaster position="top-right" reverseOrder={true} />
     </Overlay>
   );
 };

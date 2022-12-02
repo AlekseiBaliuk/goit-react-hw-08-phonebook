@@ -10,6 +10,7 @@ export const Header = styled.header`
   border-bottom: 1px solid black;
 `;
 
-export const HeaderTitle = styled.h1`
+export const HeaderTitle = styled.h2`
+  font-size: 28px;
   color: #1976d2;
 `;

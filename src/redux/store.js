@@ -11,8 +11,8 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { phonebookApi } from './contactsSlice';
-import { filterSlice } from './filterSlice';
+import { phonebookApi } from './contacts/contactsSlice';
+import { filterSlice } from './filter/filterSlice';
 import { authSlice } from './auth/slice';
 
 const authPersistConfig = {

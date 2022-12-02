@@ -2,7 +2,7 @@ import React from 'react';
 import {
   useFetchContactsQuery,
   useAddContactMutation,
-} from 'redux/contactsSlice';
+} from 'redux/contacts/contactsSlice';
 import { Form } from './Form/Form';
 import toast from 'react-hot-toast';
 
@@ -20,7 +20,6 @@ export const ContactForm = () => {
       return alert(`${contactToAdd.name} is already in contacts.`);
     }
 
-    console.log(contactToAdd);
 
     addContact(contactToAdd);
     toast.success('You add new contact.');

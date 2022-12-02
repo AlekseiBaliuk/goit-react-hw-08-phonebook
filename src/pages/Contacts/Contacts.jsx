@@ -1,4 +1,4 @@
-import { useFetchContactsQuery } from 'redux/contactsSlice';
+import { useFetchContactsQuery } from 'redux/contacts/contactsSlice';
 import { ContactForm } from '../../components/ContactForm/ContactForm';
 import { ContactList } from '../../components/ContactList/ContactList';
 import { Filter } from '../../components/Filter/Filter';
@@ -19,28 +19,30 @@ const Contacts = () => {
       sx={{
         display: 'flex',
         justifyContent: 'space-between',
-        // flexDirection: 'column',
-        // alignItems: 'center',
-        gap: '10px',
-        margin: '0 auto',
-        // maxWidth: '400px',
-        p: '0',
       }}
     >
-      {/* <h2>Phonebook</h2> */}
-
-      <ContactForm />
-
-      <Filter />
-
       <Box
         sx={{
           textAlign: 'center',
+          minWidth: '400px',
         }}
       >
         <SC.ContactsTitle>Contacts</SC.ContactsTitle>
         {data && <ContactList />}
         {isFetching && !error && <Loader />}
+      </Box>
+
+      <Box
+        sx={{
+          display: 'grid',
+          gap: '40px',
+          textAlign: 'center',
+          minWidth: '400px',
+        }}
+      >
+        <ContactForm />
+
+        <Filter />
       </Box>
 
       <Toaster position="top-right" reverseOrder={true} />
