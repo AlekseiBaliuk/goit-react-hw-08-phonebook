@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const ContactListLi = styled.li`
   display: flex;
-  width: 350px;
+  min-width: 100%;
   align-items: center;
   justify-content: space-between;
   padding: 8px;

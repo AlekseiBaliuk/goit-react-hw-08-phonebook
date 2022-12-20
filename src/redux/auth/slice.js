@@ -12,53 +12,94 @@ const initialState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: {
-    [signup.pending](state, { payload }) {
-      state.error = null;
-    },
+  extraReducers: builder =>
+    builder
+      .addCase(signup.pending, (state, { payload }) => {
+        state.error = null;
+      })
+      .addCase(signup.fulfilled, (state, { payload }) => {
+        state.user = payload.user;
+        state.token = payload.token;
+        state.isLoggedIn = true;
+      })
+      .addCase(signup.rejected, (state, { payload }) => {
+        state.error = payload;
+      })
+      .addCase(logIn.pending, (state, { payload }) => {
+        state.error = null;
+      })
+      .addCase(logIn.fulfilled, (state, { payload }) => {
+        state.user = payload.user;
+        state.token = payload.token;
+        state.isLoggedIn = true;
+      })
+      .addCase(logIn.rejected, (state, { payload }) => {
+        state.error = payload;
+      })
+      .addCase(logOut.fulfilled, state => {
+        state.user = { name: null, email: null };
+        state.token = null;
+        state.isLoggedIn = false;
+      })
+      .addCase(refreshUser.pending, state => {
+        state.isRefreshing = true;
+      })
+      .addCase(refreshUser.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(refreshUser.rejected, state => {
+        state.isRefreshing = false;
+      }),
 
-    [signup.fulfilled](state, { payload }) {
-      state.user = payload.user;
-      state.token = payload.token;
-      state.isLoggedIn = true;
-    },
+  // extraReducers: {
+  //   [signup.pending](state, { payload }) {
+  //     state.error = null;
+  //   },
 
-    [signup.rejected](state, { payload }) {
-      state.error = payload;
-    },
+  //   [signup.fulfilled](state, { payload }) {
+  // state.user = payload.user;
+  // state.token = payload.token;
+  // state.isLoggedIn = true;
+  //   },
 
-    [logIn.pending](state, { payload }) {
-      state.error = null;
-    },
+  //   [signup.rejected](state, { payload }) {
+  //     state.error = payload;
+  //   },
 
-    [logIn.fulfilled](state, { payload }) {
-      state.user = payload.user;
-      state.token = payload.token;
-      state.isLoggedIn = true;
-    },
+  //   [logIn.pending](state, { payload }) {
+  //     state.error = null;
+  //   },
 
-    [logIn.rejected](state, { payload }) {
-      state.error = payload;
-    },
+  //   [logIn.fulfilled](state, { payload }) {
+  // state.user = payload.user;
+  // state.token = payload.token;
+  // state.isLoggedIn = true;
+  //   },
 
-    [logOut.fulfilled](state) {
-      state.user = { name: null, email: null };
-      state.token = null;
-      state.isLoggedIn = false;
-    },
+  // [logIn.rejected](state, { payload }) {
+  //   state.error = payload;
+  // },
 
-    [refreshUser.pending](state) {
-      state.isRefreshing = true;
-    },
+  // [logOut.fulfilled](state) {
+  //   state.user = { name: null, email: null };
+  //   state.token = null;
+  //   state.isLoggedIn = false;
+  // },
 
-    [refreshUser.fulfilled](state, { payload }) {
-      state.user = payload;
-      state.isLoggedIn = true;
-      state.isRefreshing = false;
-    },
+  // [refreshUser.pending](state) {
+  //   state.isRefreshing = true;
+  // },
 
-    [refreshUser.rejected](state) {
-      state.isRefreshing = false;
-    },
-  },
+  // [refreshUser.fulfilled](state, { payload }) {
+  //   state.user = payload;
+  //   state.isLoggedIn = true;
+  //   state.isRefreshing = false;
+  // },
+
+  //   [refreshUser.rejected](state) {
+  //     state.isRefreshing = false;
+  //   },
+  // },
 });

@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import { getFilter } from 'redux/filter/selectors';
 import { setFilter } from 'redux/filter/filterSlice';
 import * as SC from './Filter.styled';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export const Filter = () => {
   const filter = useSelector(getFilter);
@@ -14,6 +15,8 @@ export const Filter = () => {
     dispatch(setFilter(e.currentTarget.value));
   };
 
+  const matches = useMediaQuery('(max-width:480px)');
+
   return (
     <Box
       sx={{
@@ -22,10 +25,10 @@ export const Filter = () => {
         flexDirection: 'column',
         gap: '10px',
         maxWidth: '360px',
-        p: '10px',
+        p: `${!matches && '10px'}`,
       }}
     >
-      <SC.FilterTitle>Find contacts by name</SC.FilterTitle>
+      {!matches && <SC.FilterTitle>Find contacts by name</SC.FilterTitle>}
       <TextField
         placeholder="Enter name to find..."
         name="text"
@@ -33,7 +36,7 @@ export const Filter = () => {
         size="small"
         value={filter}
         onChange={changeFilter}
-        sx={{ width: '100%' }}
+        sx={{ width: '100%'}}
       />
     </Box>
   );

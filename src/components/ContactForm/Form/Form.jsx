@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
+import toast from 'react-hot-toast';
 
 export const Form = ({ name = '', number = '', btnText, onSubmit }) => {
   const [contactName, setContactName] = useState(name);
@@ -11,10 +12,16 @@ export const Form = ({ name = '', number = '', btnText, onSubmit }) => {
   const formSubmitHandler = e => {
     e.preventDefault();
     const form = e.target;
+    const name = form.elements.name.value.trim();
+    const number = form.elements.number.value.trim();
+
+    if (name === '' || number === '') {
+      return toast.error('Fill all fields');
+    }
 
     const contactToAdd = {
-      name: form.elements.name.value,
-      number: form.elements.number.value,
+      name,
+      number,
     };
 
     onSubmit(contactToAdd);

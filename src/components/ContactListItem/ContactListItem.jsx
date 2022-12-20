@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { useDeleteContactMutation } from 'redux/contacts/contactsSlice';
 import PropTypes from 'prop-types';
 import * as SC from './ContactListItem.styled';
-import { EditContactModal } from 'components/EditContactModal/EditContactModal';
+import { ContactModal } from 'components/ContactModal/ContactModal';
 import { Box } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import PersonIcon from '@mui/icons-material/Person';
+import { EditContactForm } from 'components/EditContactForm/EditContactForm';
 
 export const ContactListItem = ({ name, number, id }) => {
   const [showModal, setShowModal] = useState(false);
@@ -51,7 +52,11 @@ export const ContactListItem = ({ name, number, id }) => {
           <DeleteIcon />
         </IconButton>
       </Box>
-      {showModal && <EditContactModal id={id} toggleModal={toggleModal} />}
+      {showModal && (
+        <ContactModal toggleModal={toggleModal}>
+          <EditContactForm id={id} toggleModal={toggleModal} />
+        </ContactModal>
+      )}
     </SC.ContactListLi>
   );
 };

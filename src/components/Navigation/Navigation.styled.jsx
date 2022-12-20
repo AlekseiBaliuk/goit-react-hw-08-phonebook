@@ -7,6 +7,11 @@ export const NavList = styled.ul`
 `;
 
 export const Link = styled(NavLink)`
+  @media (max-width: 480px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   padding: 8px 16px;
   border-radius: 4px;
   text-decoration: none;

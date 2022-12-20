@@ -6,7 +6,7 @@ import {
 import { Form } from './Form/Form';
 import toast from 'react-hot-toast';
 
-export const ContactForm = () => {
+export const ContactForm = ({ toggleModal }) => {
   const [addContact] = useAddContactMutation();
   const { data: contacts } = useFetchContactsQuery();
 
@@ -20,9 +20,9 @@ export const ContactForm = () => {
       return alert(`${contactToAdd.name} is already in contacts.`);
     }
 
-
     addContact(contactToAdd);
     toast.success('You add new contact.');
+    toggleModal();
   };
 
   return <Form onSubmit={formSubmitHandler} btnText="Add contact" />;
