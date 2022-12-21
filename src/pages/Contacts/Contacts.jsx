@@ -77,12 +77,8 @@ const Contacts = () => {
               </ContactModal>
             )} */}
             {open && (
-              <TransitionsModal
-                handleOpen={handleOpen}
-                handleClose={handleClose}
-                open={open}
-              >
-                <ContactForm toggleModal={handleClose} />
+              <TransitionsModal handleClose={handleClose} open={open}>
+                <ContactForm handleClose={handleClose} />
                 <Button
                   sx={{
                     position: 'absolute',
@@ -112,7 +108,7 @@ const Contacts = () => {
           minWidth: '400px',
         }}
       >
-        {!isMobile && <ContactForm />}
+        {!isMobile && <ContactForm handleClose={handleClose} />}
 
         {!isMobile && <Filter />}
       </Box>

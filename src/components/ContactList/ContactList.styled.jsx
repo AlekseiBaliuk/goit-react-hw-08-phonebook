@@ -17,8 +17,7 @@ export const Info = styled.p`
 `;
 
 export const TextInfo = styled.p`
-  font-size: 20px;
+  font-size: 16px;
   color: #1976d2;
   font-weight: 600;
-  margin-top: 40px;
 `;
