@@ -11,7 +11,8 @@ export const Header = styled.header`
 
   @media (max-width: 480px) {
     /* min-width: 400px; */
-    width: 100%;
+    /* width: 100%; */
+    width: 480px;
   }
 `;
 

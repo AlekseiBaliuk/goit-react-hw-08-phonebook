@@ -21,6 +21,7 @@
     "react-dom": "^18.1.0",
     "react-hot-toast": "^2.4.0",
     "react-loader-spinner": "^5.3.4",
+    "react-material-ui-form-validator": "^3.0.1",
     "react-particles": "^2.6.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
