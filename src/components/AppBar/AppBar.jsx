@@ -4,18 +4,19 @@ import { UserMenu } from 'components/UserMenu/UserMenu';
 import { useAuth } from 'hooks/useAuth';
 import { Box } from '@mui/material';
 import * as SC from './AppBar.styled';
+// import { Container } from 'components/Container/Container';
 
-
-// import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export const AppBar = () => {
   const { isLoggedIn } = useAuth();
 
   // const isDesktop = window.innerWidth > 500;
 
-  // const isMobile = useMediaQuery('(max-width:480px)');
+  const isMobile = useMediaQuery('(max-width:480px)');
 
   return (
+    // <Container>
     <SC.Header>
       <Navigation />
       <Box
@@ -26,9 +27,10 @@ export const AppBar = () => {
           gap: '15px',
         }}
       >
-        <SC.HeaderTitle>Phonebook</SC.HeaderTitle>
+        {!isMobile && <SC.HeaderTitle>Phonebook</SC.HeaderTitle>}
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </Box>
     </SC.Header>
+    // </Container>
   );
 };

@@ -15,7 +15,7 @@ export const Filter = () => {
     dispatch(setFilter(e.currentTarget.value));
   };
 
-  const matches = useMediaQuery('(max-width:480px)');
+  const isMobile = useMediaQuery('(max-width:480px)');
 
   return (
     <Box
@@ -25,10 +25,10 @@ export const Filter = () => {
         flexDirection: 'column',
         gap: '10px',
         maxWidth: '360px',
-        p: `${!matches && '10px'}`,
+        p: `${!isMobile && '10px'}`,
       }}
     >
-      {!matches && <SC.FilterTitle>Find contacts by name</SC.FilterTitle>}
+      {!isMobile && <SC.FilterTitle>Find contacts by name</SC.FilterTitle>}
       <TextField
         placeholder="Enter name to find..."
         name="text"

@@ -7,7 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Form } from 'components/ContactForm/Form/Form';
 import toast from 'react-hot-toast';
 
-export const EditContactForm = ({ toggleModal, id }) => {
+export const EditContactForm = ({ handleClose, id }) => {
   const [updateContact] = useUpdateContactMutation();
   const { data: contacts } = useFetchContactsQuery();
 
@@ -16,7 +16,7 @@ export const EditContactForm = ({ toggleModal, id }) => {
 
   const handleUpdateContact = async contactToEdit => {
     if (findeMatch.includes(contactToEdit.name.toLowerCase())) {
-      toggleModal();
+      handleClose();
       toast.error(`${contactToEdit.name} is already in contacts.`);
       return;
     }
@@ -26,7 +26,7 @@ export const EditContactForm = ({ toggleModal, id }) => {
     } catch (e) {
       console.log(e);
     }
-    toggleModal();
+    handleClose();
   };
 
   return (
@@ -46,7 +46,7 @@ export const EditContactForm = ({ toggleModal, id }) => {
           p: '0',
           minWidth: '0',
         }}
-        onClick={toggleModal}
+        onClick={handleClose}
       >
         <CloseIcon fontSize="small" />
       </Button>

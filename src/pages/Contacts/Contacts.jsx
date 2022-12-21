@@ -7,14 +7,11 @@ import { Toaster } from 'react-hot-toast';
 import * as SC from './Contacts.styled';
 import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { ContactModal } from '../../components/ContactModal/ContactModal';
 import { useState } from 'react';
 import { Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-
-
-// import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
+import TransitionsModal from 'components/Modal/Modal';
 
 const Contacts = () => {
   const { data, error, isFetching } = useFetchContactsQuery(
@@ -22,18 +19,18 @@ const Contacts = () => {
     { refetchOnMountOrArgChange: true }
   );
 
-  const [showModal, setShowModal] = useState(false);
+  const isMobile = useMediaQuery('(max-width:480px)');
 
-  const toggleModal = () => setShowModal(showModal => !showModal);
-
-  const matches = useMediaQuery('(max-width:480px)');
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <Box
       sx={{
         display: 'flex',
         justifyContent: 'space-between',
-        flexDirection: `${matches && 'column'}`,
+        flexDirection: `${isMobile && 'column'}`,
       }}
     >
       <Box
@@ -43,7 +40,7 @@ const Contacts = () => {
           padding: '12px',
         }}
       >
-        {matches && (
+        {isMobile && (
           <Box
             sx={{
               display: 'flex',
@@ -55,10 +52,14 @@ const Contacts = () => {
 
             <Filter />
 
-            <Button onClick={toggleModal}>
+            <Button onClick={handleOpen}>
               <AddCircleOutlineIcon />
             </Button>
-            {showModal && (
+
+            {/* <Button onClick={toggleModal}>
+              <AddCircleOutlineIcon />
+            </Button> */}
+            {/* {showModal && (
               <ContactModal toggleModal={toggleModal}>
                 <ContactForm toggleModal={toggleModal} />
                 <Button
@@ -74,6 +75,27 @@ const Contacts = () => {
                   <CloseIcon fontSize="small" />
                 </Button>
               </ContactModal>
+            )} */}
+            {open && (
+              <TransitionsModal
+                handleOpen={handleOpen}
+                handleClose={handleClose}
+                open={open}
+              >
+                <ContactForm toggleModal={handleClose} />
+                <Button
+                  sx={{
+                    position: 'absolute',
+                    top: '5px',
+                    right: '5px',
+                    p: '0',
+                    minWidth: '0',
+                  }}
+                  onClick={handleClose}
+                >
+                  <CloseIcon fontSize="small" />
+                </Button>
+              </TransitionsModal>
             )}
           </Box>
         )}
@@ -90,9 +112,9 @@ const Contacts = () => {
           minWidth: '400px',
         }}
       >
-        {!matches && <ContactForm />}
+        {!isMobile && <ContactForm />}
 
-        {!matches && <Filter />}
+        {!isMobile && <Filter />}
       </Box>
 
       <Toaster position="top-right" reverseOrder={true} />
