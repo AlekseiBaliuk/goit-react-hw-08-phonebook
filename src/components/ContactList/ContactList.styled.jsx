@@ -4,11 +4,15 @@ export const ContactListUl = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-width: 350px;
+  /* min-width: 350px; */
   padding: 12px;
 
-  @media (max-width: 480px) {
+  @media (min-width: 480px) {
     align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    min-width: 350px;
   }
 `;
 

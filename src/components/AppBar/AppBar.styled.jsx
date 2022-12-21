@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
 export const Header = styled.header`
+  /* width: 480px; */
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,10 +11,18 @@ export const Header = styled.header`
   margin-bottom: 16px;
   border-bottom: 1px solid black;
 
-  @media (max-width: 480px) {
-    /* min-width: 400px; */
+  @media (min-width: 768px) {
     /* width: 100%; */
-    width: 480px;
+    width: 768px;
+  }
+
+  @media (min-width: 480px) {
+    /* min-width: 400px; */
+    width: 100%;
+  }
+
+  @media (min-width: 1200px) {
+    width: 1200px;
   }
 `;
 

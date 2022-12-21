@@ -105,7 +105,7 @@ const Contacts = () => {
           display: 'grid',
           gap: '40px',
           textAlign: 'center',
-          minWidth: '400px',
+          minWidth: `${!isMobile && '400px'}`,
         }}
       >
         {!isMobile && <ContactForm handleClose={handleClose} />}
