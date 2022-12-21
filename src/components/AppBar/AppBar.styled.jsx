@@ -10,7 +10,8 @@ export const Header = styled.header`
   border-bottom: 1px solid black;
 
   @media (max-width: 480px) {
-    min-width: 400px;
+    /* min-width: 400px; */
+    width: 100%;
   }
 `;
 

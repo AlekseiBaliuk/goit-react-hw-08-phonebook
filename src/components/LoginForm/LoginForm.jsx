@@ -16,7 +16,7 @@ export const LoginForm = () => {
     const form = e.target;
 
     if (error) {
-      return toast.error('No such user');
+      toast.error('No such user');
     }
 
     dispatch(

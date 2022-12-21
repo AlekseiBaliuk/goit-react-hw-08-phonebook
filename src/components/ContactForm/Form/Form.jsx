@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
 import * as yup from 'yup';
 import { Button } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
 import toast from 'react-hot-toast';
 
 export const Form = ({ name = '', number = '', btnText, onSubmit }) => {
   const [contactName, setContactName] = useState(name);
   const [contactNumber, setContactNumber] = useState(number);
   const [er, setEr] = useState(null);
+  // console.log(er);
 
   const formSubmitHandler = e => {
     e.preventDefault();
@@ -18,8 +20,8 @@ export const Form = ({ name = '', number = '', btnText, onSubmit }) => {
     const number = form.elements.number.value.trim();
 
     let schema = yup.object({
-      name: yup.string().required('Name is required'),
-      number: yup.number().required('Number is required').positive().integer(),
+      name: yup.string().required(),
+      number: yup.number().required().positive().integer(),
     });
 
     if (name === '' || number === '') {
@@ -36,7 +38,7 @@ export const Form = ({ name = '', number = '', btnText, onSubmit }) => {
         contactToAdd,
       })
       .then(() => onSubmit(contactToAdd))
-      .catch(e => setEr(e));
+      .catch(e => setEr(e.name));
     // onSubmit(contactToAdd);
 
     setContactName('');
@@ -78,28 +80,34 @@ export const Form = ({ name = '', number = '', btnText, onSubmit }) => {
       validate="true"
       onSubmit={formSubmitHandler}
     >
-      <TextField
-        label="Name"
-        name="name"
-        type="name"
-        size="small"
-        onChange={handleChange}
-        value={contactName}
-        sx={{ width: '100%' }}
-        error={er && Boolean(er)}
-        helperText={er && 'Invalid name or number'}
-      />
-      <TextField
-        label="Number"
-        name="number"
-        type="phone"
-        size="small"
-        onChange={handleChange}
-        value={contactNumber}
-        sx={{ width: '100%' }}
-        error={er && Boolean(er)}
-        helperText={er && 'Invalid name or number'}
-      />
+      <FormControl>
+        <TextField
+          label="Name"
+          name="name"
+          type="name"
+          size="small"
+          onChange={handleChange}
+          value={contactName}
+          sx={{ width: '100%' }}
+          error={er && Boolean(er)}
+          helperText={er && 'Invalid name or number'}
+          required
+        />
+      </FormControl>
+      <FormControl error={true}>
+        <TextField
+          label="Number"
+          name="number"
+          type="phone"
+          size="small"
+          onChange={handleChange}
+          value={contactNumber}
+          sx={{ width: '100%' }}
+          error={er && Boolean(er)}
+          helperText={er && 'Invalid name or number'}
+          required
+        />
+      </FormControl>
 
       <Button
         sx={{ width: '120px', mx: 'auto' }}
