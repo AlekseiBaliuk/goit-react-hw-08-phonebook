@@ -20,6 +20,7 @@ const Contacts = () => {
   );
 
   const isMobile = useMediaQuery('(max-width:480px)');
+  const isDesktop = useMediaQuery('(min-width:1200px)');
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -29,7 +30,8 @@ const Contacts = () => {
     <Box
       sx={{
         display: 'flex',
-        justifyContent: 'space-between',
+        // justifyContent: 'space-between',
+        justifyContent: 'space-around',
         flexDirection: `${isMobile && 'column'}`,
       }}
     >
@@ -105,7 +107,8 @@ const Contacts = () => {
           display: 'grid',
           gap: '40px',
           textAlign: 'center',
-          minWidth: `${!isMobile && '400px'}`,
+
+          minWidth: `${isDesktop && '400px'}`,
         }}
       >
         {!isMobile && <ContactForm handleClose={handleClose} />}
