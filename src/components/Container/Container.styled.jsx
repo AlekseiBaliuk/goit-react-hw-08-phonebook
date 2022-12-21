@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   @media (min-width: 480px) {
-    /* width: 100%; */
-    width: 480px;
+    width: 100%;
+    /* width: 480px; */
   }
 
   @media (min-width: 768px) {

@@ -36,7 +36,7 @@ const Contacts = () => {
       <Box
         sx={{
           textAlign: 'center',
-          minWidth: '400px',
+          // minWidth: '400px',
           padding: '12px',
         }}
       >
