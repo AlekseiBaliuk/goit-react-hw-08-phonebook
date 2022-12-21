@@ -30,6 +30,7 @@ const Contacts = () => {
     <Box
       sx={{
         display: 'flex',
+        alignItems: 'center',
         // justifyContent: 'space-between',
         justifyContent: 'space-around',
         flexDirection: `${isMobile && 'column'}`,
