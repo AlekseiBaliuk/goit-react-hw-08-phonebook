@@ -109,6 +109,6 @@ export const Form = ({ name = '', number = '', btnText, onSubmit }) => {
 Form.propTypes = {
   name: PropTypes.string,
   number: PropTypes.string,
-  btnText: PropTypes.string.isRequired,
+  btnText: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
 };

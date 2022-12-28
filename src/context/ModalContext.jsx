@@ -1,10 +1,6 @@
 import { createContext, useState } from 'react';
 
-export const ModalContext = createContext({
-  open: false,
-  handleOpen: () => {},
-  handleClose: () => {},
-});
+export const ModalContext = createContext();
 
 export const ModalState = ({ children }) => {
   const [open, setOpen] = useState(false);

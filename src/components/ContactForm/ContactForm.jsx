@@ -11,12 +11,11 @@ export const ContactForm = ({ handleClose }) => {
   const { data: contacts } = useFetchContactsQuery();
 
   const formSubmitHandler = contactToAdd => {
-    if (
-      contacts.find(
-        contact =>
-          contact.name.toLowerCase() === contactToAdd.name.toLowerCase()
-      )
-    ) {
+    const nameMatches = contacts.find(
+      contact => contact.name.toLowerCase() === contactToAdd.name.toLowerCase()
+    );
+
+    if (nameMatches) {
       return alert(`${contactToAdd.name} is already in contacts.`);
     }
 

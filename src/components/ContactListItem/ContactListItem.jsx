@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import { useDeleteContactMutation } from 'redux/contacts/contactsSlice';
 import PropTypes from 'prop-types';
 import * as SC from './ContactListItem.styled';
@@ -10,13 +10,13 @@ import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import PersonIcon from '@mui/icons-material/Person';
 import { EditContactForm } from 'components/EditContactForm/EditContactForm';
 import TransitionsModal from 'components/Modal/Modal';
-import { ModalContext } from 'context/ModalContext';
 import Avatar from 'react-avatar';
 
 export const ContactListItem = ({ name, number, id }) => {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
-
-  const { open, handleOpen, handleClose } = useContext(ModalContext);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <SC.ContactListLi>

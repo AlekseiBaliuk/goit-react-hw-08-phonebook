@@ -7,7 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import * as SC from './Contacts.styled';
 import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useContext} from 'react';
+import { useContext } from 'react';
 import { Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -21,6 +21,10 @@ const Contacts = () => {
   );
 
   const { open, handleOpen, handleClose } = useContext(ModalContext);
+
+  // const [open, setOpen] = useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
 
   const isMobile = useMediaQuery('(max-width:480px)');
   const isDesktop = useMediaQuery('(min-width:1200px)');
@@ -57,7 +61,7 @@ const Contacts = () => {
             </Button>
 
             {open && (
-              <TransitionsModal handleClose={handleClose} open={open}>
+              <TransitionsModal open={open} handleClose={handleClose}>
                 <ContactForm handleClose={handleClose} />
                 <Button
                   sx={{
