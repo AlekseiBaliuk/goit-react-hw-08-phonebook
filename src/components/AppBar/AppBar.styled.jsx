@@ -10,12 +10,10 @@ export const Header = styled.header`
   border-bottom: 1px solid black;
 
   @media (min-width: 768px) {
-    /* width: 100%; */
     width: 768px;
   }
 
   @media (min-width: 480px) {
-    /* min-width: 400px; */
     width: 100%;
   }
 

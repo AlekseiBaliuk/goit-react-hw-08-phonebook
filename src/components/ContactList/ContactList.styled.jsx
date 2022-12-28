@@ -24,4 +24,5 @@ export const TextInfo = styled.p`
   font-size: 16px;
   color: #1976d2;
   font-weight: 600;
+  padding-top: 12px;
 `;

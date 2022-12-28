@@ -7,11 +7,12 @@ import { Toaster } from 'react-hot-toast';
 import * as SC from './Contacts.styled';
 import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useState } from 'react';
+import { useContext} from 'react';
 import { Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import TransitionsModal from 'components/Modal/Modal';
+import { ModalContext } from 'context/ModalContext';
 
 const Contacts = () => {
   const { data, error, isFetching } = useFetchContactsQuery(
@@ -19,19 +20,16 @@ const Contacts = () => {
     { refetchOnMountOrArgChange: true }
   );
 
+  const { open, handleOpen, handleClose } = useContext(ModalContext);
+
   const isMobile = useMediaQuery('(max-width:480px)');
   const isDesktop = useMediaQuery('(min-width:1200px)');
-
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   return (
     <Box
       sx={{
         display: 'flex',
         alignItems: 'center',
-        // justifyContent: 'space-between',
         justifyContent: 'space-around',
         flexDirection: `${isMobile && 'column'}`,
       }}
@@ -39,7 +37,6 @@ const Contacts = () => {
       <Box
         sx={{
           textAlign: 'center',
-          // minWidth: '400px',
           padding: '12px',
         }}
       >
@@ -59,26 +56,6 @@ const Contacts = () => {
               <AddCircleOutlineIcon />
             </Button>
 
-            {/* <Button onClick={toggleModal}>
-              <AddCircleOutlineIcon />
-            </Button> */}
-            {/* {showModal && (
-              <ContactModal toggleModal={toggleModal}>
-                <ContactForm toggleModal={toggleModal} />
-                <Button
-                  sx={{
-                    position: 'absolute',
-                    top: '5px',
-                    right: '5px',
-                    p: '0',
-                    minWidth: '0',
-                  }}
-                  onClick={toggleModal}
-                >
-                  <CloseIcon fontSize="small" />
-                </Button>
-              </ContactModal>
-            )} */}
             {open && (
               <TransitionsModal handleClose={handleClose} open={open}>
                 <ContactForm handleClose={handleClose} />

@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { useDeleteContactMutation } from 'redux/contacts/contactsSlice';
 import PropTypes from 'prop-types';
 import * as SC from './ContactListItem.styled';
-// import { ContactModal } from 'components/ContactModal/ContactModal';
 import { Box } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -11,20 +10,18 @@ import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import PersonIcon from '@mui/icons-material/Person';
 import { EditContactForm } from 'components/EditContactForm/EditContactForm';
 import TransitionsModal from 'components/Modal/Modal';
+import { ModalContext } from 'context/ModalContext';
+import Avatar from 'react-avatar';
 
 export const ContactListItem = ({ name, number, id }) => {
-  // const [showModal, setShowModal] = useState(false);
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
 
-  // const toggleModal = () => setShowModal(showModal => !showModal);
-
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const { open, handleOpen, handleClose } = useContext(ModalContext);
 
   return (
     <SC.ContactListLi>
-      <Box sx={{ textAlign: 'start' }}>
+      <Avatar name={name} size="35px" round={true} />
+      <Box sx={{ textAlign: 'start', marginLeft: '5px' }}>
         <SC.ContactListText>
           <PersonIcon sx={{ width: '20px', height: '20px' }} />
           {name}
@@ -38,6 +35,7 @@ export const ContactListItem = ({ name, number, id }) => {
         sx={{
           display: 'flex',
           gap: '5px',
+          marginLeft: 'auto',
         }}
       >
         <IconButton

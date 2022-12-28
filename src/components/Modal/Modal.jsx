@@ -6,9 +6,6 @@ import Fade from '@mui/material/Fade';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function TransitionsModal({ children, handleClose, open }) {
-  // const [open, setOpen] = React.useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
   const isMobile = useMediaQuery('(max-width:480px)');
 
   const style = {
@@ -25,7 +22,6 @@ export default function TransitionsModal({ children, handleClose, open }) {
 
   return (
     <>
-      {/* <Button onClick={handleOpen}>Add contact</Button> */}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
